@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מרכז חדשנות כנרת LIVE | סדרת וובינרים חינמית</title>
+    <meta name="description" content="סדרת וובינרים חינמית של מרכז חדשנות כנרת על הטמעת AI, חדשנות פנים ארגונית וחינוך לעולם משתנה">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary: #2B9EB3;
+            --primary-dark: #1E7A8A;
+            --primary-light: #E8F6F8;
+            --primary-glow: rgba(43, 158, 179, 0.3);
+            --green: #6BBF59;
+            --green-dark: #4FA344;
+            --green-light: #E8F7E5;
+            --dark: #1A2F38;
+            --dark-secondary: #2D4A56;
+            --text: #334155;
+            --text-light: #64748B;
+            --text-muted: #94A3B8;
+            --white: #FFFFFF;
+            --off-white: #F8FAFB;
+            --gray-50: #F1F5F9;
+            --gray-100: #E2E8F0;
+            --gray-200: #CBD5E1;
+            --gradient-primary: linear-gradient(135deg, #2B9EB3 0%, #1E7A8A 100%);
+            --gradient-green: linear-gradient(135deg, #6BBF59 0%, #4FA344 100%);
+            --gradient-hero: linear-gradient(160deg, #1A2F38 0%, #2B9EB3 50%, #1E7A8A 100%);
+            --gradient-dark: linear-gradient(135deg, #1A2F38 0%, #2D4A56 100%);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --shadow-glow: 0 0 30px rgba(43, 158, 179, 0.2);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; height: auto; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ===== UTILITY ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ===== FLOATING SQUARES BACKGROUND ===== */
+        .floating-squares {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-square {
+            position: absolute;
+            border: 1.5px solid rgba(43, 158, 179, 0.08);
+            border-radius: 6px;
+            background: rgba(43, 158, 179, 0.02);
+            animation: floatSquare linear infinite;
+        }
+
+        @keyframes floatSquare {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--dark);
+            color: var(--white);
+            padding: 10px 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .top-bar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar-text {
+            font-size: 0.85rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-text span {
+            opacity: 0.7;
+        }
+
+        .top-bar-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(107, 191, 89, 0.15);
+            color: var(--green);
+            padding: 3px 12px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        .top-bar-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .top-bar-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 6px 20px;
+            border-radius: 100px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .top-bar-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: var(--gradient-hero);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+        }
+
+        .hero-shape-1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+            transform: rotate(15deg);
+            animation: heroFloat1 20s ease-in-out infinite;
+        }
+
+        .hero-shape-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 10%;
+            left: 15%;
+            transform: rotate(-20deg);
+            animation: heroFloat2 25s ease-in-out infinite;
+            background: rgba(107, 191, 89, 0.05);
+        }
+
+        .hero-shape-3 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: -30px;
+            transform: rotate(45deg);
+            animation: heroFloat3 18s ease-in-out infinite;
+        }
+
+        .hero-shape-4 {
+            width: 80px;
+            height: 80px;
+            bottom: 30%;
+            right: 20%;
+            transform: rotate(30deg);
+            animation: heroFloat1 22s ease-in-out infinite reverse;
+            background: rgba(43, 158, 179, 0.1);
+        }
+
+        .hero-shape-5 {
+            width: 120px;
+            height: 120px;
+            top: 50%;
+            left: 40%;
+            transform: rotate(-10deg);
+            animation: heroFloat2 15s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat1 {
+            0%, 100% { transform: rotate(15deg) translate(0, 0); }
+            33% { transform: rotate(20deg) translate(20px, -30px); }
+            66% { transform: rotate(10deg) translate(-15px, 20px); }
+        }
+
+        @keyframes heroFloat2 {
+            0%, 100% { transform: rotate(-20deg) translate(0, 0); }
+            50% { transform: rotate(-15deg) translate(30px, -20px); }
+        }
+
+        @keyframes heroFloat3 {
+            0%, 100% { transform: rotate(45deg) translate(0, 0); }
+            50% { transform: rotate(50deg) translate(-25px, 25px); }
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-logo {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+
+        .hero-logo-text {
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.8;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            padding-right: 16px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .hero-badge-icon {
+            font-size: 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            position: relative;
+            display: inline;
+        }
+
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--green);
+            opacity: 0.4;
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        .hero-body {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            opacity: 0.75;
+            margin-bottom: 24px;
+        }
+
+        .hero-strength {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--green);
+            margin-bottom: 32px;
+            padding: 12px 20px;
+            background: rgba(107, 191, 89, 0.1);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(107, 191, 89, 0.15);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: var(--gradient-green);
+            color: var(--white);
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(107, 191, 89, 0.3);
+            font-family: 'Heebo', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(107, 191, 89, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            font-size: 1.05rem;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255,255,255,0.25);
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .hero-micro {
+            display: flex;
+            gap: 20px;
+            font-size: 0.82rem;
+            opacity: 0.65;
+            flex-wrap: wrap;
+        }
+
+        .hero-micro span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-micro-check {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* Hero Form Card */
+        .hero-form-card {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            position: relative;
+        }
+
+        .hero-form-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+            z-index: -1;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+        }
+
+        .hero-form-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .hero-form-sub {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 24px;
+        }
+
+        .hero-form-card .form-group {
+            margin-bottom: 14px;
+        }
+
+        .hero-form-card input,
+        .hero-form-card select {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: var(--white);
+            font-size: 0.92rem;
+            font-family: 'Heebo', sans-serif;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .hero-form-card input::placeholder {
+            color: rgba(255,255,255,0.45);
+        }
+
+        .hero-form-card input:focus,
+        .hero-form-card select:focus {
+            border-color: var(--green);
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 0 0 3px rgba(107, 191, 89, 0.15);
+        }
+
+        .hero-form-card select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.5)' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 16px center;
+        }
+
+        .hero-form-card select option {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .hero-form-card .btn-primary {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.1rem;
+            margin-top: 6px;
+        }
+
+        .hero-form-micro {
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.5;
+            margin-top: 12px;
+        }
+
+        /* ===== WHY NOW SECTION ===== */
+        .why-now {
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .why-now::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(43, 158, 179, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.35;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .why-now-text {
+            max-width: 750px;
+            margin: 0 auto 50px;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--text-light);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--gray-100);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.6rem;
+        }
+
+        .benefit-icon-1 { background: var(--primary-light); color: var(--primary); }
+        .benefit-icon-2 { background: var(--green-light); color: var(--green); }
+        .benefit-icon-3 { background: #FFF3E0; color: #F59E0B; }
+
+        .benefit-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .benefit-card p {
+            font-size: 0.92rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ===== WHAT YOU GET SECTION ===== */
+        .what-you-get {
+            background: var(--white);
+            position: relative;
+        }
+
+        .perks-list {
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        .perk-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .perk-item:last-child {
+            border-bottom: none;
+        }
+
+        .perk-check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--green-light);
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .perk-text {
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .strength-box {
+            background: var(--primary-light);
+            border: 1px solid rgba(43, 158, 179, 0.15);
+            border-radius: var(--radius-md);
+            padding: 20px 28px;
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        /* ===== TOPICS SECTION ===== */
+        .topics {
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .topics::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(107, 191, 89, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .topic-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--gray-100);
+            position: relative;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+
+        .topic-card-header {
+            padding: 28px 28px 20px;
+            position: relative;
+        }
+
+        .topic-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .topic-tag-ai { background: #E0F2F1; color: #00897B; }
+        .topic-tag-edu { background: #E8EAF6; color: #5C6BC0; }
+        .topic-tag-innov { background: #FFF3E0; color: #F57C00; }
+
+        .topic-card-small-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .topic-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.45;
+            margin-bottom: 12px;
+        }
+
+        .topic-card-body {
+            padding: 0 28px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .topic-card-footer {
+            padding: 20px 28px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topic-audience {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .topic-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 22px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .topic-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* ===== EXPANDABLE DETAILS ===== */
+        .expand-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .expand-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .expand-panel {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 48px;
+            position: relative;
+            transform: translateY(20px) scale(0.97);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .expand-overlay.active .expand-panel {
+            transform: translateY(0) scale(1);
+        }
+
+        .expand-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray-50);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+
+        .expand-close:hover {
+            background: var(--gray-100);
+            color: var(--dark);
+        }
+
+        .expand-panel h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 16px;
+            line-height: 1.4;
+            padding-left: 50px;
+        }
+
+        .expand-intro {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .expand-section {
+            margin-bottom: 28px;
+        }
+
+        .expand-section h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .expand-section ul {
+            padding-right: 24px;
+        }
+
+        .expand-section li {
+            list-style: disc;
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .expand-cta {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .expand-cta .btn-primary {
+            padding: 16px 48px;
+        }
+
+        /* ===== AUDIENCE SECTION ===== */
+        .audience {
+            background: var(--white);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .audience-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 18px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            font-size: 0.88rem;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .audience-chip:hover {
+            background: var(--primary-light);
+            border-color: rgba(43, 158, 179, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .audience-chip-icon {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .audience-note {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 28px;
+            background: var(--gray-50);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            border: 1px solid var(--gray-100);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq {
+            background: var(--off-white);
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            border: 1px solid var(--gray-100);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--gray-200);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            transition: color 0.3s;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--gray-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .faq-item.open .faq-icon {
+            background: var(--primary-light);
+            color: var(--primary);
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            font-size: 0.92rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* ===== FORM SECTION ===== */
+        .form-section {
+            background: var(--gradient-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: -200px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(43, 158, 179, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .form-section::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(107, 191, 89, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .form-wrapper {
+            max-width: 580px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-section .section-header {
+            margin-bottom: 40px;
+        }
+
+        .form-section .section-title {
+            color: var(--white);
+        }
+
+        .form-section .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .main-form {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .main-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .main-form label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            opacity: 0.8;
+        }
+
+        .main-form input,
+        .main-form select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: 'Heebo', sans-serif;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .main-form input::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+
+        .main-form input:focus,
+        .main-form select:focus {
+            border-color: var(--green);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 0 0 3px rgba(107, 191, 89, 0.15);
+        }
+
+        .main-form select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.5)' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 16px center;
+        }
+
+        .main-form select option {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .main-form .btn-primary {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.15rem;
+            margin-top: 8px;
+        }
+
+        .form-privacy {
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.45;
+            margin-top: 14px;
+        }
+
+        /* ===== CTA BOTTOM ===== */
+        .cta-bottom {
+            background: var(--white);
+            text-align: center;
+        }
+
+        .cta-bottom .section-title {
+            margin-bottom: 16px;
+        }
+
+        .cta-bottom p {
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .cta-bottom .btn-primary {
+            padding: 18px 48px;
+            font-size: 1.1rem;
+        }
+
+        /* ===== STICKY CTA ===== */
+        .sticky-cta {
+            position: fixed;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sticky-cta.visible {
+            bottom: 24px;
+        }
+
+        .sticky-cta-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--gradient-green);
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(107, 191, 89, 0.35), 0 0 0 4px rgba(255,255,255,0.9);
+            transition: all 0.3s;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .sticky-cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(107, 191, 89, 0.45), 0 0 0 4px rgba(255,255,255,0.9);
+        }
+
+        /* ===== THANK YOU SCREEN ===== */
+        .thank-you {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hero);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .thank-you.active {
+            display: flex;
+        }
+
+        .thank-you-content {
+            max-width: 500px;
+        }
+
+        .thank-you-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(107, 191, 89, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 2.5rem;
+            animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .thank-you h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .thank-you p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            opacity: 0.85;
+            margin-bottom: 12px;
+        }
+
+        .thank-you .tip {
+            font-size: 0.9rem;
+            opacity: 0.65;
+            margin-bottom: 32px;
+        }
+
+        .thank-you .btn-secondary {
+            padding: 14px 36px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.5);
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.82rem;
+        }
+
+        .footer-logo {
+            height: 36px;
+            filter: brightness(0) invert(1);
+            opacity: 0.6;
+            margin-bottom: 10px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-form-card {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 40px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-micro {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .top-bar .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .main-form {
+                padding: 28px 20px;
+            }
+
+            .expand-panel {
+                padding: 32px 24px;
+            }
+
+            .expand-panel h2 {
+                padding-left: 40px;
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-form-card {
+                padding: 24px;
+            }
+        }
+
+        /* ===== PARTICLE DOTS ===== */
+        .particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* ===== COUNTER ANIMATION ===== */
+        .count-up {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating Squares Background -->
+<div class="floating-squares" id="floatingSquares"></div>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-text">
+            <span>סדרת וובינרים חינמית של מרכז חדשנות כנרת</span>
+            <span>|</span>
+            <span>בהרשמה מראש בלבד</span>
+            <span class="top-bar-badge">מספר המקומות בלייב מוגבל</span>
+        </div>
+        <button class="top-bar-cta" onclick="scrollToForm()">להרשמה חינם ←</button>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="hero-bg-shapes">
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+        <div class="hero-shape hero-shape-3"></div>
+        <div class="hero-shape hero-shape-4"></div>
+        <div class="hero-shape hero-shape-5"></div>
+    </div>
+    <div class="particle-container" id="particles"></div>
+
+    <div class="container">
+        <div class="hero-grid">
+            <!-- Content Side -->
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="https://static.wixstatic.com/media/4aa83a_8834f96f383f4ae0b877d496085d8053~mv2.png" alt="מרכז חדשנות כנרת">
+                    <span class="hero-logo-text">מרכז חדשנות כנרת LIVE</span>
+                </div>
+
+                <div class="hero-badge">
+                    <span class="hero-badge-icon">🎯</span>
+                    סדרת וובינרים חינמית לארגונים, מנהלים ואנשי חינוך
+                </div>
+
+                <h1>איך ארגונים <span class="highlight">מתקדמים נכון</span> גם בתקופה של אי ודאות</h1>
+
+                <p class="hero-subtitle">מרכז חדשנות כנרת מזמין אתכם לסדרת וובינרים חינמית שתעזור לכם להבין איך להטמיע AI, לקדם חדשנות ולבנות מוכנות טובה יותר לעולם שמשתנה מהר.</p>
+
+                <p class="hero-body">כשהמציאות משתנה, ארגונים ואנשי מקצוע לא צריכים לעצור. הם צריכים לקבל כיוון ברור, להבין איפה נכון לפעול, וללמוד איך לייצר ערך אמיתי — גם עכשיו.</p>
+
+                <div class="hero-strength">
+                    ✦ שלושה וובינרים ממוקדים · שלושה תחומים קריטיים · ערך פרקטי ללא עלות
+                </div>
+
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToForm()">אני רוצה להירשם לסדרה ←</button>
+                    <button class="btn-secondary" onclick="scrollToForm()">שמרו לי מקום</button>
+                </div>
+
+                <div class="hero-micro">
+                    <span><span class="hero-micro-check">✓</span> ללא עלות</span>
+                    <span><span class="hero-micro-check">✓</span> מתאים למנהלים, ארגונים ואנשי חינוך</span>
+                    <span><span class="hero-micro-check">✓</span> גישה ללייב ולהקלטה לנרשמים</span>
+                </div>
+            </div>
+
+            <!-- Form Side -->
+            <div class="hero-form-card reveal-scale">
+                <h3 class="hero-form-title">הצטרפו לסדרה — חינם</h3>
+                <p class="hero-form-sub">מלאו את הפרטים ונשמור לכם מקום</p>
+                <form id="heroForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="שם מלא" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="אימייל" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="טלפון" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="interest" required>
+                            <option value="" disabled selected>מה הכי מעניין אתכם?</option>
+                            <option value="ai">הטמעת AI בארגונים</option>
+                            <option value="education">בינה מלאכותית למורים</option>
+                            <option value="innovation">חדשנות פנים ארגונית בעידן ה-AI</option>
+                            <option value="all">אני רוצה לשמוע על כל הסדרה</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">להרשמה חינם ←</button>
+                </form>
+                <p class="hero-form-micro">הפרטים ישמשו לצורך הרשמה, שליחת תזכורות ועדכונים הקשורים לסדרה בלבד</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Now Section -->
+<section class="why-now section-padding" id="whyNow">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">💡 למה עכשיו</span>
+            <h2 class="section-title">המציאות השתנתה.<br>גם הדרך להתקדם צריכה להשתנה.</h2>
+        </div>
+
+        <p class="why-now-text reveal reveal-delay-1">
+            אי אפשר להמשיך לעבוד רק לפי ההרגלים של אתמול. העולם הארגוני, החינוכי והניהולי נכנס לשלב חדש — שבו AI, חדשנות ויכולת הסתגלות הם כבר לא יתרון צדדי. הם חלק מהיכולת להישאר רלוונטיים, יעילים ומובילים.
+        </p>
+        <p class="why-now-text reveal reveal-delay-2">
+            לכן בנינו סדרת וובינרים קצרה, ברורה ומעשית. לא כדי להעמיס תוכן — אלא כדי לעזור לכם להבין במה נכון להתמקד, מה חשוב לעשות עכשיו, ואיך להתחיל לזוז בצורה מדויקת יותר.
+        </p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card reveal reveal-delay-1">
+                <div class="benefit-icon benefit-icon-1">🔍</div>
+                <h3>בהירות</h3>
+                <p>תבינו מה באמת חשוב עכשיו, ומה רק נשמע חשוב.</p>
+            </div>
+            <div class="benefit-card reveal reveal-delay-2">
+                <div class="benefit-icon benefit-icon-2">⚡</div>
+                <h3>פרקטיקה</h3>
+                <p>תקבלו כיווני פעולה וכלים שאפשר לקחת הלאה.</p>
+            </div>
+            <div class="benefit-card reveal reveal-delay-3">
+                <div class="benefit-icon benefit-icon-3">🎯</div>
+                <h3>רלוונטיות</h3>
+                <p>התוכן נבנה למציאות של ארגונים, מנהלים ואנשי חינוך שפועלים בעולם משתנה.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What You Get Section -->
+<section class="what-you-get section-padding" id="whatYouGet">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">🎁 מה מקבלים</span>
+            <h2 class="section-title">מה תקבלו כשתירשמו</h2>
+            <p class="section-subtitle">הסדרה נבנתה כדי לתת ערך אמיתי כבר מהמפגש הראשון.</p>
+        </div>
+
+        <div class="perks-list">
+            <div class="perk-item reveal reveal-delay-1">
+                <span class="perk-check">✓</span>
+                <span class="perk-text">גישה חינמית לוובינרים הנבחרים</span>
+            </div>
+            <div class="perk-item reveal reveal-delay-1">
+                <span class="perk-check">✓</span>
+                <span class="perk-text">תוכן ממוקד, קצר ופרקטי</span>
+            </div>
+            <div class="perk-item reveal reveal-delay-2">
+                <span class="perk-check">✓</span>
+                <span class="perk-text">אפשרות לבחור את התחום שהכי רלוונטי עבורכם</span>
+            </div>
+            <div class="perk-item reveal reveal-delay-2">
+                <span class="perk-check">✓</span>
+                <span class="perk-text">גישה להקלטה לנרשמים</span>
+            </div>
+            <div class="perk-item reveal reveal-delay-3">
+                <span class="perk-check">✓</span>
+                <span class="perk-text">סיכום קצר עם הנקודות המרכזיות לאחר כל מפגש</span>
+            </div>
+        </div>
+
+        <div class="strength-box reveal reveal-delay-3">
+            לא עוד הרצאה כללית. כן — מסגרת ברורה שתעזור לכם להבין איפה נכון לפעול.
+        </div>
+    </div>
+</section>
+
+<!-- Topics Section -->
+<section class="topics section-padding" id="topics">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">📋 התחומים</span>
+            <h2 class="section-title">שלושה תחומים שאי אפשר להתעלם מהם</h2>
+            <p class="section-subtitle">בחרנו שלושה נושאים חזקים במיוחד, מתוך עולמות שמשפיעים כבר עכשיו על ארגונים, חינוך ותהליכי הובלה.</p>
+        </div>
+
+        <div class="topics-grid">
+            <!-- Card 1 - AI -->
+            <div class="topic-card reveal reveal-delay-1">
+                <div class="topic-card-header">
+                    <span class="topic-tag topic-tag-ai">בינה מלאכותית</span>
+                    <p class="topic-card-small-title">וובינר 01</p>
+                    <h3>הטמעת AI בארגונים — איך לזהות הזדמנויות, לצמצם סיכונים ולהתחיל נכון</h3>
+                </div>
+                <div class="topic-card-body">
+                    <p>וובינר למנהלים ולמובילי שינוי שרוצים להבין איפה AI באמת יכול לייצר ערך, ומה חשוב לבדוק לפני שמתחילים.</p>
+                </div>
+                <div class="topic-card-footer">
+                    <span class="topic-audience">👤 למנהלים ומקבלי החלטות</span>
+                    <button class="topic-btn" onclick="openExpand(0)">לפרטים נוספים →</button>
+                </div>
+            </div>
+
+            <!-- Card 2 - Education -->
+            <div class="topic-card reveal reveal-delay-2">
+                <div class="topic-card-header">
+                    <span class="topic-tag topic-tag-edu">חינוך</span>
+                    <p class="topic-card-small-title">וובינר 02</p>
+                    <h3>בינה מלאכותית למורים — פחות עומס, יותר דיוק, יותר השפעה</h3>
+                </div>
+                <div class="topic-card-body">
+                    <p>וובינר פרקטי לאנשי חינוך שרוצים להבין איך להשתמש נכון בכלי AI כדי לחסוך זמן, לשפר תכנים ולעבוד בצורה עדכנית יותר.</p>
+                </div>
+                <div class="topic-card-footer">
+                    <span class="topic-audience">👤 לאנשי חינוך ומובילי פדגוגיה</span>
+                    <button class="topic-btn" onclick="openExpand(1)">לפרטים נוספים →</button>
+                </div>
+            </div>
+
+            <!-- Card 3 - Innovation -->
+            <div class="topic-card reveal reveal-delay-3">
+                <div class="topic-card-header">
+                    <span class="topic-tag topic-tag-innov">חדשנות בארגונים</span>
+                    <p class="topic-card-small-title">וובינר 03</p>
+                    <h3>חדשנות פנים ארגונית בעידן ה-AI — איך בונים מנועי שינוי מתוך הארגון</h3>
+                </div>
+                <div class="topic-card-body">
+                    <p>וובינר למנהלים שרוצים לקדם יוזמות מבפנים, לחזק מעורבות עובדים ולהפוך חדשנות לתהליך מעשי.</p>
+                </div>
+                <div class="topic-card-footer">
+                    <span class="topic-audience">👤 למנהלים, משאבי אנוש ופיתוח ארגוני</span>
+                    <button class="topic-btn" onclick="openExpand(2)">לפרטים נוספים →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Expand Overlays -->
+<!-- Expand 1: AI -->
+<div class="expand-overlay" id="expand0">
+    <div class="expand-panel">
+        <button class="expand-close" onclick="closeExpand(0)">✕</button>
+        <h2>הטמעת AI בארגונים — איך לזהות הזדמנויות, לצמצם סיכונים ולהתחיל נכון</h2>
+        <p class="expand-intro">AI כבר משנה את הדרך שבה ארגונים עובדים. השאלה היא לא אם להתחיל, אלא איך להתחיל בצורה נכונה, מדורגת ואחראית.</p>
+
+        <div class="expand-section">
+            <h4>📌 מה נלמד בוובינר</h4>
+            <ul>
+                <li>איך לזהות תהליכים שיכולים להרוויח משילוב AI</li>
+                <li>איך להבדיל בין התלהבות רגעית לבין ערך ארגוני אמיתי</li>
+                <li>אילו סיכונים חשוב לקחת בחשבון כבר בשלב הראשון</li>
+                <li>איך נראה צעד ראשון נכון בתוך הארגון</li>
+            </ul>
+        </div>
+
+        <div class="expand-section">
+            <h4>👥 למי זה מתאים</h4>
+            <ul>
+                <li>מנכ"לים · סמנכ"לים</li>
+                <li>מנהלי חדשנות · מנהלי דיגיטל</li>
+                <li>מנהלי אגפים · מנהלי משאבי אנוש</li>
+                <li>מובילי טרנספורמציה</li>
+            </ul>
+        </div>
+
+        <div class="expand-section">
+            <h4>🎯 מה תצאו איתו</h4>
+            <ul>
+                <li>מסגרת ברורה להתחלה נכונה</li>
+                <li>זיהוי ראשוני של הזדמנויות</li>
+                <li>הבנה טובה יותר של חסמים וסיכונים</li>
+                <li>כיוון ברור לצעד הבא</li>
+            </ul>
+        </div>
+
+        <div class="expand-cta">
+            <button class="btn-primary" onclick="closeExpand(0); scrollToForm();">אני רוצה להירשם לוובינר הזה ←</button>
+        </div>
+    </div>
+</div>
+
+<!-- Expand 2: Education -->
+<div class="expand-overlay" id="expand1">
+    <div class="expand-panel">
+        <button class="expand-close" onclick="closeExpand(1)">✕</button>
+        <h2>בינה מלאכותית למורים — פחות עומס, יותר דיוק, יותר השפעה</h2>
+        <p class="expand-intro">אנשי חינוך מתמודדים עם עומס, שינויים מהירים וציפיות חדשות. הוובינר הזה נועד להראות איך אפשר להשתמש נכון ב-AI כדי לחסוך זמן, לחזק את ההוראה ולשפר את העבודה השוטפת.</p>
+
+        <div class="expand-section">
+            <h4>📌 מה נלמד בוובינר</h4>
+            <ul>
+                <li>איך AI יכול לעזור בהכנת חומרים ומערכי שיעור</li>
+                <li>איך לחסוך זמן בעבודה שוטפת</li>
+                <li>איך לייצר התאמות טובות יותר לתלמידים</li>
+                <li>איך לשלב טכנולוגיה בלי לפגוע בשיקול הדעת הפדגוגי</li>
+            </ul>
+        </div>
+
+        <div class="expand-section">
+            <h4>👥 למי זה מתאים</h4>
+            <ul>
+                <li>מנהלי בתי ספר · רכזי חדשנות</li>
+                <li>מורים · מדריכים פדגוגיים</li>
+                <li>מנהלי תחום חינוך</li>
+                <li>גופי הכשרה חינוכיים</li>
+            </ul>
+        </div>
+
+        <div class="expand-section">
+            <h4>🎯 מה תצאו איתו</h4>
+            <ul>
+                <li>דוגמאות לשימושים אמיתיים</li>
+                <li>הבנה איפה AI יכול לעזור כבר עכשיו</li>
+                <li>כיווני פעולה פרקטיים להתחלה</li>
+                <li>תמונה בהירה יותר של מה נכון לעשות ומה דורש זהירות</li>
+            </ul>
+        </div>
+
+        <div class="expand-cta">
+            <button class="btn-primary" onclick="closeExpand(1); scrollToForm();">אני רוצה להירשם לוובינר הזה ←</button>
+        </div>
+    </div>
+</div>
+
+<!-- Expand 3: Innovation -->
+<div class="expand-overlay" id="expand2">
+    <div class="expand-panel">
+        <button class="expand-close" onclick="closeExpand(2)">✕</button>
+        <h2>חדשנות פנים ארגונית בעידן ה-AI — איך בונים מנועי שינוי מתוך הארגון</h2>
+        <p class="expand-intro">חדשנות לא חייבת להתחיל בפרויקט גדול. לעיתים היא מתחילה בזיהוי מדויק של אתגר, בחיבור נכון של אנשים, ובהובלה חכמה של תהליך.</p>
+
+        <div class="expand-section">
+            <h4>📌 מה נלמד בוובינר</h4>
+            <ul>
+                <li>איך לזהות מוקדי חדשנות אמיתיים בתוך הארגון</li>
+                <li>איך לחבר עובדים ומנהלים לתהליך</li>
+                <li>איך להשתמש ב-AI כדי לקדם תהליכי חדשנות מהירים יותר</li>
+                <li>איך להפוך חדשנות לרצף פעולות ולא לרעיון שנשאר על הנייר</li>
+            </ul>
+        </div>
+
+        <div class="expand-section">
+            <h4>👥 למי זה מתאים</h4>
+            <ul>
+                <li>מנהלי ארגונים · מנהלי אגפים</li>
+                <li>מנהלי משאבי אנוש · מנהלי חדשנות</li>
+                <li>רכזי פיתוח ארגוני</li>
+                <li>גופים ציבוריים ועסקיים</li>
+            </ul>
+        </div>
+
+        <div class="expand-section">
+            <h4>🎯 מה תצאו איתו</h4>
+            <ul>
+                <li>מודל ראשוני ליצירת מהלך חדשנות פנימי</li>
+                <li>דרך פשוטה להתחיל בקטן ולייצר השפעה</li>
+                <li>רעיונות ראשונים ליישום בתוך הארגון</li>
+                <li>הבנה טובה יותר איך לרתום את האנשים הנכונים</li>
+            </ul>
+        </div>
+
+        <div class="expand-cta">
+            <button class="btn-primary" onclick="closeExpand(2); scrollToForm();">אני רוצה להירשם לוובינר הזה ←</button>
+        </div>
+    </div>
+</div>
+
+<!-- Audience Section -->
+<section class="audience section-padding" id="audience">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">👥 קהל יעד</span>
+            <h2 class="section-title">הסדרה מתאימה במיוחד ל...</h2>
+        </div>
+
+        <div class="audience-grid">
+            <div class="audience-chip reveal reveal-delay-1"><span class="audience-chip-icon">◆</span> מנהלים ומנהלות</div>
+            <div class="audience-chip reveal reveal-delay-1"><span class="audience-chip-icon">◆</span> מנכ"לים וסמנכ"לים</div>
+            <div class="audience-chip reveal reveal-delay-1"><span class="audience-chip-icon">◆</span> מנהלי אגפים ויחידות</div>
+            <div class="audience-chip reveal reveal-delay-1"><span class="audience-chip-icon">◆</span> מנהלי חדשנות</div>
+            <div class="audience-chip reveal reveal-delay-2"><span class="audience-chip-icon">◆</span> מנהלי חינוך</div>
+            <div class="audience-chip reveal reveal-delay-2"><span class="audience-chip-icon">◆</span> מורים ורכזי חדשנות</div>
+            <div class="audience-chip reveal reveal-delay-2"><span class="audience-chip-icon">◆</span> מנהלי משאבי אנוש</div>
+            <div class="audience-chip reveal reveal-delay-2"><span class="audience-chip-icon">◆</span> מנהלי דיגיטל</div>
+            <div class="audience-chip reveal reveal-delay-3"><span class="audience-chip-icon">◆</span> מנהלי פיתוח ארגוני</div>
+            <div class="audience-chip reveal reveal-delay-3"><span class="audience-chip-icon">◆</span> רשויות מקומיות</div>
+            <div class="audience-chip reveal reveal-delay-3"><span class="audience-chip-icon">◆</span> ארגונים ציבוריים</div>
+            <div class="audience-chip reveal reveal-delay-3"><span class="audience-chip-icon">◆</span> חברות בצמיחה</div>
+        </div>
+
+        <div class="audience-note reveal reveal-delay-4">
+            הסדרה מתאימה למי שמחפש ערך מעשי, כיוון ברור ותוכן שאפשר ליישם. היא פחות מתאימה למי שמחפש תוכן תיאורטי בלבד.
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq section-padding" id="faq">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">❓ שאלות נפוצות</span>
+            <h2 class="section-title">שאלות ותשובות</h2>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>האם חייבים להירשם לכל הוובינרים?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">לא. אפשר לבחור את הוובינר שהכי רלוונטי עבורכם, או להירשם לכל הסדרה.</div>
+                </div>
+            </div>
+
+            <div class="faq-item reveal reveal-delay-1">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>האם ההשתתפות כרוכה בתשלום?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">לא. ההשתתפות בוובינרים היא ללא עלות ובהרשמה מראש.</div>
+                </div>
+            </div>
+
+            <div class="faq-item reveal reveal-delay-2">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>האם תהיה הקלטה?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">כן. הנרשמים יקבלו גישה להקלטה לאחר המפגש לזמן מוגבל.</div>
+                </div>
+            </div>
+
+            <div class="faq-item reveal reveal-delay-3">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>כמה זמן נמשך כל וובינר?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">כל וובינר נבנה בפורמט קצר, ממוקד ופרקטי. המטרה היא לתת ערך גבוה בזמן יעיל.</div>
+                </div>
+            </div>
+
+            <div class="faq-item reveal reveal-delay-4">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>אפשר להירשם גם אם אני עדיין לא בטוח איזה תחום הכי רלוונטי לי?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">כן. אפשר להירשם לסדרה, לבחור תחום עניין, ולהחליט בהמשך לאיזה וובינר להתחבר.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Form Section -->
+<section class="form-section section-padding" id="formSection">
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="section-header reveal">
+                <h2 class="section-title">הצטרפו לסדרת הוובינרים של מרכז חדשנות כנרת</h2>
+                <p class="section-subtitle">מלאו את הפרטים ונשמור לכם מקום. תוכלו לבחור את תחום העניין הרלוונטי לכם ביותר, או להצטרף לכל הסדרה.</p>
+            </div>
+
+            <form class="main-form reveal" id="mainForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>שם מלא</label>
+                        <input type="text" name="name" placeholder="השם שלכם" required>
+                    </div>
+                    <div class="form-group">
+                        <label>תפקיד</label>
+                        <input type="text" name="role" placeholder="התפקיד שלכם">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ארגון</label>
+                        <input type="text" name="org" placeholder="שם הארגון">
+                    </div>
+                    <div class="form-group">
+                        <label>טלפון</label>
+                        <input type="tel" name="phone" placeholder="מספר הטלפון" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>אימייל</label>
+                    <input type="email" name="email" placeholder="כתובת האימייל שלכם" required>
+                </div>
+                <div class="form-group">
+                    <label>מה הכי מעניין אתכם כרגע?</label>
+                    <select name="interest" required>
+                        <option value="" disabled selected>בחרו תחום עניין</option>
+                        <option value="ai">הטמעת AI בארגונים</option>
+                        <option value="education">בינה מלאכותית למורים</option>
+                        <option value="innovation">חדשנות פנים ארגונית בעידן ה-AI</option>
+                        <option value="all">אני רוצה לשמוע על כל הסדרה</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">להרשמה חינם ←</button>
+                <p class="form-privacy">הפרטים ישמשו לצורך הרשמה, שליחת תזכורות ועדכונים הקשורים לסדרה בלבד</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Bottom -->
+<section class="cta-bottom section-padding">
+    <div class="container reveal">
+        <h2 class="section-title">המציאות משתנה. זה הזמן להבין איפה נכון לפעול.</h2>
+        <p>אם אתם רוצים לקבל כיוון ברור, להבין הזדמנויות ולהיחשף לכלים ורעיונות מעשיים — זו הזדמנות טובה להצטרף לסדרה ממוקדת, קצרה וחינמית.</p>
+        <button class="btn-primary" onclick="scrollToForm()">שמרו לי מקום ←</button>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <img src="https://static.wixstatic.com/media/4aa83a_8834f96f383f4ae0b877d496085d8053~mv2.png" alt="מרכז חדשנות כנרת" class="footer-logo">
+        <p>מרכז חדשנות כנרת · כל הזכויות שמורות © 2026</p>
+    </div>
+</footer>
+
+<!-- Sticky CTA -->
+<div class="sticky-cta" id="stickyCta">
+    <button class="sticky-cta-btn" onclick="scrollToForm()">
+        להרשמה חינם ←
+    </button>
+</div>
+
+<!-- Thank You Screen -->
+<div class="thank-you" id="thankYou">
+    <div class="thank-you-content">
+        <div class="thank-you-icon">✓</div>
+        <h2>נרשמתם בהצלחה!</h2>
+        <p>תודה שנרשמתם לסדרת הוובינרים של מרכז חדשנות כנרת. בקרוב תקבלו למייל את כל הפרטים, מועדי המפגשים וקישור ההשתתפות.</p>
+        <p class="tip">כדאי לשמור את המייל שתקבלו ולהוסיף את המועד ליומן.</p>
+        <button class="btn-secondary" onclick="closeThankYou()">חזרה לעמוד הראשי</button>
+    </div>
+</div>
+
+<script>
+// ===== FLOATING SQUARES =====
+(function createFloatingSquares() {
+    const container = document.getElementById('floatingSquares');
+    const count = 15;
+    for (let i = 0; i < count; i++) {
+        const sq = document.createElement('div');
+        sq.classList.add('floating-square');
+        const size = Math.random() * 60 + 20;
+        sq.style.width = size + 'px';
+        sq.style.height = size + 'px';
+        sq.style.left = Math.random() * 100 + '%';
+        sq.style.animationDuration = (Math.random() * 25 + 20) + 's';
+        sq.style.animationDelay = (Math.random() * 15) + 's';
+        container.appendChild(sq);
+    }
+})();
+
+// ===== HERO PARTICLES =====
+(function createParticles() {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.animationDuration = (Math.random() * 4 + 2) + 's';
+        p.style.animationDelay = (Math.random() * 3) + 's';
+        p.style.animation = `particlePulse ${Math.random() * 4 + 3}s ease-in-out infinite`;
+        p.style.animationDelay = Math.random() * 3 + 's';
+        container.appendChild(p);
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes particlePulse {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.4; transform: scale(1.5); }
+        }
+    `;
+    document.head.appendChild(style);
+})();
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+    revealObserver.observe(el);
+});
+
+// ===== STICKY CTA =====
+const stickyCta = document.getElementById('stickyCta');
+const heroSection = document.getElementById('hero');
+
+window.addEventListener('scroll', () => {
+    const heroBottom = heroSection.getBoundingClientRect().bottom;
+    const formSection = document.getElementById('formSection');
+    const formTop = formSection.getBoundingClientRect().top;
+
+    if (heroBottom < 0 && formTop > window.innerHeight) {
+        stickyCta.classList.add('visible');
+    } else {
+        stickyCta.classList.remove('visible');
+    }
+});
+
+// ===== SCROLL TO FORM =====
+function scrollToForm() {
+    document.getElementById('formSection').scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
+}
+
+// ===== FAQ TOGGLE =====
+function toggleFaq(element) {
+    const item = element.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(faq => {
+        faq.classList.remove('open');
+        faq.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+
+    // Open clicked if was closed
+    if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+}
+
+// ===== EXPAND PANELS =====
+function openExpand(index) {
+    const overlay = document.getElementById('expand' + index);
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+        overlay.classList.add('active');
+    });
+}
+
+function closeExpand(index) {
+    const overlay = document.getElementById('expand' + index);
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 300);
+}
+
+// Close on overlay click
+document.querySelectorAll('.expand-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            const index = overlay.id.replace('expand', '');
+            closeExpand(index);
+        }
+    });
+});
+
+// Close on ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.expand-overlay').forEach((overlay, i) => {
+            if (overlay.classList.contains('active')) {
+                closeExpand(i);
+            }
+        });
+    }
+});
+
+// ===== FORM SUBMISSION =====
+function handleFormSubmit(e) {
+    e.preventDefault();
+    // Show thank you screen
+    const thankYou = document.getElementById('thankYou');
+    thankYou.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeThankYou() {
+    const thankYou = document.getElementById('thankYou');
+    thankYou.classList.remove('active');
+    document.body.style.overflow = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== SMOOTH PARALLAX ON HERO SHAPES =====
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const shapes = document.querySelectorAll('.hero-shape');
+    shapes.forEach((shape, i) => {
+        const speed = (i + 1) * 0.02;
+        shape.style.transform += ` translateY(${scrollY * speed}px)`;
+    });
+});
+</script>
+
+</body>
+</html>
