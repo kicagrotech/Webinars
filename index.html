@@ -2221,12 +2221,58 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ===== FORM SUBMISSION =====
+// ⚠️ החליפו את הכתובת הזו בכתובת ה-Web App שלכם מ-Google Apps Script
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLGWG5-v-IjFL09Rli53MTn1RjojIE2OgBAKFVfTKl2rjFBPq2fw7TAs4yEZekv8ws/exec';
+
 function handleFormSubmit(e) {
     e.preventDefault();
-    // Show thank you screen
-    const thankYou = document.getElementById('thankYou');
-    thankYou.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+
+    // Collect form data
+    const formData = {
+        name: form.querySelector('[name="name"]').value,
+        email: form.querySelector('[name="email"]').value,
+        phone: form.querySelector('[name="phone"]').value,
+        interest: form.querySelector('[name="interest"]').value,
+        role: form.querySelector('[name="role"]') ? form.querySelector('[name="role"]').value : '',
+        org: form.querySelector('[name="org"]') ? form.querySelector('[name="org"]').value : '',
+        source: form.id === 'heroForm' ? 'טופס הירו' : 'טופס ראשי'
+    };
+
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'שולח...';
+    submitBtn.style.opacity = '0.7';
+
+    // Send to Google Sheets
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    })
+    .then(() => {
+        // Show thank you screen
+        const thankYou = document.getElementById('thankYou');
+        thankYou.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        form.reset();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        // Show thank you anyway (no-cors doesn't return response)
+        const thankYou = document.getElementById('thankYou');
+        thankYou.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        form.reset();
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        submitBtn.style.opacity = '1';
+    });
 }
 
 function closeThankYou() {
